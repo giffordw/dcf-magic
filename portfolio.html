@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - DCF Magic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f0f14;
+      color: #e4e4e7;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #a78bfa, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .header a {
+      color: #71717a;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .header a:hover { color: #a1a1aa; }
+
+    /* Buttons */
+    .btn {
+      padding: 0.45rem 0.9rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: linear-gradient(135deg, #818cf8, #6366f1); }
+
+    .btn-secondary {
+      background: #27272a;
+      color: #a1a1aa;
+    }
+
+    .btn-secondary:hover { background: #3f3f46; color: #e4e4e7; }
+
+    .btn-danger {
+      background: transparent;
+      color: #71717a;
+      padding: 0.3rem 0.5rem;
+    }
+
+    .btn-danger:hover { color: #f87171; }
+
+    .btn-sm {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.7rem;
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Status */
+    .status {
+      font-size: 0.75rem;
+      font-weight: 500;
+      min-height: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .status.loading { color: #a78bfa; }
+    .status.success { color: #34d399; }
+    .status.error { color: #f87171; }
+
+    /* Add stock form */
+    .add-form {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .add-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .add-form label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #71717a;
+      font-weight: 600;
+    }
+
+    .add-form input {
+      width: 85px;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      background: #0f0f14;
+      color: #e4e4e7;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      text-align: right;
+    }
+
+    .add-form input.ticker-input {
+      width: 80px;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .add-form input:focus {
+      border-color: #6366f1;
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #27272a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #18181b;
+      font-size: 0.8rem;
+    }
+
+    thead th {
+      padding: 0.6rem 0.75rem;
+      text-align: right;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #71717a;
+      font-weight: 600;
+      border-bottom: 1px solid #27272a;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    thead th:first-child { text-align: left; }
+
+    thead th:hover { color: #a1a1aa; }
+
+    thead th.sorted { color: #a78bfa; }
+
+    thead th .arrow { font-size: 0.55rem; margin-left: 0.2rem; }
+
+    tbody td {
+      padding: 0.55rem 0.75rem;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      border-bottom: 1px solid rgba(39, 39, 42, 0.4);
+    }
+
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #e4e4e7;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody tr:hover { background: rgba(99, 102, 241, 0.04); }
+
+    .positive { color: #34d399; }
+    .negative { color: #f87171; }
+    .muted { color: #52525b; }
+
+    .actions { display: flex; gap: 0.25rem; justify-content: flex-end; }
+
+    /* Edit mode */
+    .edit-input {
+      width: 70px;
+      padding: 0.2rem 0.4rem;
+      border: 1px solid #6366f1;
+      border-radius: 6px;
+      background: #0f0f14;
+      color: #e4e4e7;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      text-align: right;
+      outline: none;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #52525b;
+      font-size: 0.85rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #3f3f46;
+      font-size: 0.7rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Portfolio</h1>
+      <div class="header-actions">
+        <button class="btn btn-secondary" id="refreshBtn">Refresh Prices</button>
+        <a href="/">Calculator</a>
+      </div>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="add-form">
+      <div class="form-group">
+        <label>Symbol</label>
+        <input type="text" class="ticker-input" id="addSymbol" placeholder="AAPL">
+      </div>
+      <div class="form-group">
+        <label>EPS ($)</label>
+        <input type="number" id="addEps" step="0.01" value="">
+      </div>
+      <div class="form-group">
+        <label>PE (x)</label>
+        <input type="number" id="addPe" step="0.1" value="">
+      </div>
+      <div class="form-group">
+        <label>Growth %</label>
+        <input type="number" id="addGrowth" step="0.1" value="">
+      </div>
+      <div class="form-group">
+        <label>Return %</label>
+        <input type="number" id="addReturn" step="0.1" value="15">
+      </div>
+      <div class="form-group">
+        <label>Multiple (x)</label>
+        <input type="number" id="addMultiple" step="0.1" value="18">
+      </div>
+      <button class="btn btn-primary" id="addBtn">Add</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr id="headerRow"></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="footer">DCF Magic &middot; 5-Year EPS Projection</div>
+  </div>
+
+  <script>
+    const N = 5;
+    let stocks = [];
+    let sortCol = 'delta';
+    let sortAsc = false;
+    let editingSymbol = null;
+
+    const columns = [
+      { key: 'symbol', label: 'Symbol', align: 'left' },
+      { key: 'eps', label: 'EPS', fmt: '$' },
+      { key: 'pe', label: 'PE', fmt: 'x' },
+      { key: 'growthRate', label: 'Growth', fmt: '%' },
+      { key: 'desiredReturn', label: 'Return', fmt: '%' },
+      { key: 'epsMultiple', label: 'Multiple', fmt: 'x' },
+      { key: 'cachedPrice', label: 'Price', fmt: '$' },
+      { key: 'futurePrice', label: 'Future', fmt: '$' },
+      { key: 'returnFromToday', label: 'CAGR', fmt: '%' },
+      { key: 'entryPrice', label: 'Entry', fmt: '$' },
+      { key: 'delta', label: 'Delta', fmt: '%' },
+      { key: '_actions', label: '' },
+    ];
+
+    const editableKeys = ['eps', 'pe', 'growthRate', 'desiredReturn', 'epsMultiple'];
+
+    function calc(s) {
+      const eps = s.eps || 0;
+      const growth = (s.growthRate || 0) / 100;
+      const desiredReturn = (s.desiredReturn || 0) / 100;
+      const multiple = s.epsMultiple || 0;
+      const price = s.cachedPrice || 0;
+
+      const futureEps = eps * Math.pow(1 + growth, N);
+      const futurePrice = futureEps * multiple;
+      let returnFromToday = null;
+      if (price > 0 && futurePrice > 0) {
+        returnFromToday = (Math.pow(futurePrice / price, 1 / N) - 1) * 100;
+      }
+      let entryPrice = null;
+      if (desiredReturn > -1) {
+        entryPrice = futurePrice / Math.pow(1 + desiredReturn, N);
+      }
+      let delta = null;
+      if (entryPrice != null && price > 0) {
+        delta = ((entryPrice - price) / price) * 100;
+      }
+      return { futurePrice, returnFromToday, entryPrice, delta };
+    }
+
+    function fmtVal(val, fmt) {
+      if (val == null) return '<span class="muted">--</span>';
+      const n = parseFloat(val);
+      if (isNaN(n)) return val;
+      if (fmt === '$') return '$' + n.toFixed(2);
+      if (fmt === '%') {
+        const cls = n >= 0 ? 'positive' : 'negative';
+        return `<span class="${cls}">${n.toFixed(2)}%</span>`;
+      }
+      if (fmt === 'x') return n.toFixed(1) + 'x';
+      return n.toString();
+    }
+
+    function setStatus(msg, type) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + type;
+    }
+
+    function renderHeader() {
+      const row = document.getElementById('headerRow');
+      row.innerHTML = '';
+      columns.forEach(col => {
+        const th = document.createElement('th');
+        if (col.key === '_actions') { row.appendChild(th); return; }
+        th.style.textAlign = col.align || 'right';
+        th.textContent = col.label;
+        if (col.key === sortCol) {
+          th.classList.add('sorted');
+          const arrow = document.createElement('span');
+          arrow.className = 'arrow';
+          arrow.textContent = sortAsc ? '\u25B2' : '\u25BC';
+          th.appendChild(arrow);
+        }
+        th.addEventListener('click', () => {
+          if (sortCol === col.key) { sortAsc = !sortAsc; }
+          else { sortCol = col.key; sortAsc = false; }
+          render();
+        });
+        row.appendChild(th);
+      });
+    }
+
+    function render() {
+      renderHeader();
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      if (!stocks.length) {
+        tbody.innerHTML = '<tr><td colspan="' + columns.length + '" class="empty-state">No stocks yet. Add one above.</td></tr>';
+        return;
+      }
+
+      const enriched = stocks.map(s => ({ ...s, ...calc(s) }));
+
+      enriched.sort((a, b) => {
+        let va = a[sortCol], vb = b[sortCol];
+        if (va == null) va = sortAsc ? Infinity : -Infinity;
+        if (vb == null) vb = sortAsc ? Infinity : -Infinity;
+        if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+        return sortAsc ? va - vb : vb - va;
+      });
+
+      enriched.forEach(s => {
+        const tr = document.createElement('tr');
+        const isEditing = editingSymbol === s.symbol;
+
+        columns.forEach(col => {
+          const td = document.createElement('td');
+
+          if (col.key === '_actions') {
+            td.innerHTML = isEditing
+              ? '<div class="actions"><button class="btn btn-primary btn-sm save-btn">Save</button><button class="btn btn-secondary btn-sm cancel-btn">Cancel</button></div>'
+              : '<div class="actions"><button class="btn btn-secondary btn-sm edit-btn">Edit</button><button class="btn btn-danger btn-sm del-btn">Del</button></div>';
+
+            if (isEditing) {
+              td.querySelector('.save-btn').addEventListener('click', () => saveEdit(s.symbol, tr));
+              td.querySelector('.cancel-btn').addEventListener('click', () => { editingSymbol = null; render(); });
+            } else {
+              td.querySelector('.edit-btn').addEventListener('click', () => { editingSymbol = s.symbol; render(); });
+              td.querySelector('.del-btn').addEventListener('click', () => deleteStock(s.symbol));
+            }
+          } else if (isEditing && editableKeys.includes(col.key)) {
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.className = 'edit-input';
+            input.step = col.key === 'eps' ? '0.01' : '0.1';
+            input.value = s[col.key] || '';
+            input.dataset.key = col.key;
+            td.appendChild(input);
+          } else if (col.key === 'symbol') {
+            td.textContent = s.symbol;
+            td.style.textAlign = 'left';
+          } else {
+            td.innerHTML = fmtVal(s[col.key], col.fmt);
+          }
+
+          tr.appendChild(td);
+        });
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // --- API calls ---
+
+    async function loadStocks() {
+      try {
+        const res = await fetch('/api/stocks');
+        stocks = await res.json();
+        render();
+      } catch (e) {
+        setStatus('Failed to load stocks', 'error');
+      }
+    }
+
+    async function addStock() {
+      const symbol = document.getElementById('addSymbol').value.trim().toUpperCase();
+      if (!symbol) return;
+      const body = {
+        symbol,
+        eps: parseFloat(document.getElementById('addEps').value) || 0,
+        pe: parseFloat(document.getElementById('addPe').value) || 0,
+        growthRate: parseFloat(document.getElementById('addGrowth').value) || 0,
+        desiredReturn: parseFloat(document.getElementById('addReturn').value) || 15,
+        epsMultiple: parseFloat(document.getElementById('addMultiple').value) || 18,
+      };
+      try {
+        const res = await fetch('/api/stocks', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          setStatus(err.error || 'Failed to add', 'error');
+          return;
+        }
+        document.getElementById('addSymbol').value = '';
+        document.getElementById('addEps').value = '';
+        document.getElementById('addPe').value = '';
+        document.getElementById('addGrowth').value = '';
+        setStatus(symbol + ' added', 'success');
+        await loadStocks();
+      } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    async function saveEdit(symbol, tr) {
+      const inputs = tr.querySelectorAll('.edit-input');
+      const body = {};
+      inputs.forEach(inp => {
+        body[inp.dataset.key] = parseFloat(inp.value) || 0;
+      });
+      try {
+        await fetch('/api/stocks/' + symbol, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        editingSymbol = null;
+        setStatus(symbol + ' updated', 'success');
+        await loadStocks();
+      } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    async function deleteStock(symbol) {
+      if (!confirm('Delete ' + symbol + '?')) return;
+      try {
+        await fetch('/api/stocks/' + symbol, { method: 'DELETE' });
+        setStatus(symbol + ' deleted', 'success');
+        await loadStocks();
+      } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    async function refreshPrices() {
+      const btn = document.getElementById('refreshBtn');
+      btn.disabled = true;
+      setStatus('Refreshing prices...', 'loading');
+      try {
+        const res = await fetch('/api/refresh-prices', { method: 'POST' });
+        const data = await res.json();
+        stocks = data.stocks;
+        const msgs = [];
+        if (data.updated) msgs.push(data.updated + ' updated');
+        if (data.errors?.length) msgs.push(data.errors.length + ' failed');
+        setStatus(msgs.join(', ') || 'All prices current', 'success');
+        render();
+      } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // --- Event listeners ---
+
+    document.getElementById('addBtn').addEventListener('click', addStock);
+    document.getElementById('addSymbol').addEventListener('keydown', e => {
+      if (e.key === 'Enter') addStock();
+    });
+    document.getElementById('refreshBtn').addEventListener('click', refreshPrices);
+
+    // --- Init ---
+
+    loadStocks();
+  </script>
+</body>
+</html>

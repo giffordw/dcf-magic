@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCF Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f0f14;
+      color: #e4e4e7;
+      min-height: 100vh;
+      padding: 3rem 1rem;
+    }
+
+    .container {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #a78bfa, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.35rem;
+    }
+
+    .header p {
+      color: #71717a;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    /* Cards */
+    .card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #71717a;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #27272a;
+    }
+
+    /* Fields */
+    .field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0;
+    }
+
+    .field + .field {
+      border-top: 1px solid rgba(39, 39, 42, 0.5);
+    }
+
+    .field label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #a1a1aa;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      background: #0f0f14;
+      border: 1px solid #3f3f46;
+      border-radius: 10px;
+      padding: 0 0.65rem;
+      transition: all 0.2s;
+    }
+
+    .input-wrap:focus-within {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+      background: #141418;
+    }
+
+    .input-wrap .prefix,
+    .input-wrap .suffix {
+      font-size: 0.8rem;
+      color: #52525b;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    input[type="number"] {
+      width: 88px;
+      padding: 0.5rem 0.15rem;
+      border: none;
+      background: transparent;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-align: right;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      color: #e4e4e7;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    /* Derived row */
+    .derived-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-top: 1px solid rgba(39, 39, 42, 0.5);
+    }
+
+    .derived-row label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #a1a1aa;
+    }
+
+    .derived-row .value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d4d4d8;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Results */
+    .results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .result-card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+    }
+
+    .result-card.return-card::before {
+      background: linear-gradient(90deg, #059669, #34d399);
+    }
+
+    .result-card.entry-card::before {
+      background: linear-gradient(90deg, #6366f1, #a78bfa);
+    }
+
+    .result-card .result-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #71717a;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .result-card .result-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-value.positive {
+      color: #34d399;
+    }
+
+    .result-value.negative {
+      color: #f87171;
+    }
+
+    .result-value.neutral {
+      color: #a78bfa;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #3f3f46;
+      font-size: 0.7rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 2rem 0.75rem;
+      }
+
+      .results {
+        grid-template-columns: 1fr;
+      }
+
+      input[type="number"] {
+        width: 80px;
+      }
+
+      .result-card .result-value {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>DCF Calculator</h1>
+      <p>Simple EPS-based discounted cash flow valuation</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">Assumptions</div>
+
+      <div class="field">
+        <label>EPS (TTM)</label>
+        <div class="input-wrap">
+          <span class="prefix">$</span>
+          <input type="number" id="eps" step="0.01" value="5.00">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>PE (TTM)</label>
+        <div class="input-wrap">
+          <input type="number" id="pe" step="0.1" value="20">
+          <span class="suffix">x</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>EPS Growth Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="growth" step="0.1" value="10">
+          <span class="suffix">%</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Desired Return</label>
+        <div class="input-wrap">
+          <input type="number" id="desiredReturn" step="0.1" value="15">
+          <span class="suffix">%</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>EPS Multiple</label>
+        <div class="input-wrap">
+          <input type="number" id="multiple" step="0.1" value="18">
+          <span class="suffix">x</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Current Price</label>
+        <div class="input-wrap">
+          <span class="prefix">$</span>
+          <input type="number" id="currentPrice" step="0.01" value="100.00">
+        </div>
+      </div>
+
+      <div class="derived-row">
+        <label>Future Price (5yr)</label>
+        <span class="value" id="futurePrice">$144.95</span>
+      </div>
+    </div>
+
+    <div class="results">
+      <div class="result-card return-card">
+        <div class="result-label">Return from Today's Price</div>
+        <div class="result-value positive" id="returnResult">7.71%</div>
+      </div>
+
+      <div class="result-card entry-card">
+        <div class="result-label" id="entryLabel">Entry Price for 15% Return</div>
+        <div class="result-value neutral" id="entryResult">$72.07</div>
+      </div>
+    </div>
+
+    <div class="footer">5-Year EPS Projection &middot; DCF Magic</div>
+  </div>
+
+  <script>
+    const N = 5;
+
+    const els = {
+      eps: document.getElementById('eps'),
+      pe: document.getElementById('pe'),
+      growth: document.getElementById('growth'),
+      desiredReturn: document.getElementById('desiredReturn'),
+      multiple: document.getElementById('multiple'),
+      currentPrice: document.getElementById('currentPrice'),
+      futurePrice: document.getElementById('futurePrice'),
+      returnResult: document.getElementById('returnResult'),
+      entryResult: document.getElementById('entryResult'),
+      entryLabel: document.getElementById('entryLabel'),
+    };
+
+    function updateCurrentPrice() {
+      const eps = parseFloat(els.eps.value) || 0;
+      const pe = parseFloat(els.pe.value) || 0;
+      const price = eps * pe;
+      els.currentPrice.value = price > 0 ? price.toFixed(2) : '';
+      calculate();
+    }
+
+    function calculate() {
+      const growth = (parseFloat(els.growth.value) || 0) / 100;
+      const desiredReturn = (parseFloat(els.desiredReturn.value) || 0) / 100;
+      const multiple = parseFloat(els.multiple.value) || 0;
+      const eps = parseFloat(els.eps.value) || 0;
+      const currentPrice = parseFloat(els.currentPrice.value) || 0;
+
+      const futureEps = eps * Math.pow(1 + growth, N);
+      const futurePrice = futureEps * multiple;
+
+      let returnFromToday = null;
+      if (currentPrice > 0 && futurePrice > 0) {
+        returnFromToday = Math.pow(futurePrice / currentPrice, 1 / N) - 1;
+      }
+
+      let entryPrice = null;
+      if (desiredReturn > -1) {
+        entryPrice = futurePrice / Math.pow(1 + desiredReturn, N);
+      }
+
+      els.futurePrice.textContent = futurePrice > 0 ? '$' + futurePrice.toFixed(2) : '--';
+
+      if (returnFromToday !== null) {
+        const pct = (returnFromToday * 100).toFixed(2);
+        els.returnResult.textContent = pct + '%';
+        els.returnResult.className = 'result-value ' + (returnFromToday >= 0 ? 'positive' : 'negative');
+      } else {
+        els.returnResult.textContent = '--';
+        els.returnResult.className = 'result-value neutral';
+      }
+
+      const desiredPct = parseFloat(els.desiredReturn.value) || 0;
+      els.entryLabel.textContent = 'Entry Price for ' + desiredPct + '% Return';
+
+      if (entryPrice !== null && entryPrice > 0) {
+        els.entryResult.textContent = '$' + entryPrice.toFixed(2);
+        els.entryResult.className = 'result-value neutral';
+      } else {
+        els.entryResult.textContent = '--';
+        els.entryResult.className = 'result-value neutral';
+      }
+    }
+
+    els.eps.addEventListener('input', updateCurrentPrice);
+    els.pe.addEventListener('input', updateCurrentPrice);
+
+    ['currentPrice', 'growth', 'desiredReturn', 'multiple'].forEach(id => {
+      els[id].addEventListener('input', calculate);
+    });
+
+    calculate();
+  </script>
+</body>
+</html>

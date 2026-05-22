@@ -2,233 +2,243 @@
   "stocks": [
     {
       "symbol": "ADP",
-      "eps": 10.41,
-      "pe": 19.4,
-      "growthRate": 7.28,
+      "eps": 10.76,
+      "pe": 18,
+      "growthRate": 8,
       "desiredReturn": 10,
       "epsMultiple": 27,
-      "cachedPrice": 190.275,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 219.89,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "AMZN",
-      "eps": 7.17,
-      "pe": 29,
-      "growthRate": 14.85,
+      "eps": 8.35,
+      "pe": 32.3,
+      "growthRate": 15,
       "desiredReturn": 15,
       "epsMultiple": 34,
-      "cachedPrice": 237.66499,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 267.78,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "AAPL",
-      "eps": 7.92,
-      "pe": 31.9,
-      "growthRate": 9.68,
+      "eps": 8.25,
+      "pe": 34,
+      "growthRate": 9,
       "desiredReturn": 15,
-      "epsMultiple": 25,
-      "cachedPrice": 260.18,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 28,
+      "cachedPrice": 304.86499,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "ABNB",
-      "eps": 4.04,
-      "pe": 31.9,
-      "growthRate": 9.68,
+      "eps": 4.05,
+      "pe": 31,
+      "growthRate": 15,
       "desiredReturn": 15,
       "epsMultiple": 30,
-      "cachedPrice": 127.075,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 134.24,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "ACN",
-      "eps": 12.33,
-      "pe": 16.2,
-      "growthRate": 9.72,
+      "eps": 12.21,
+      "pe": 13,
+      "growthRate": 9.5,
       "desiredReturn": 15,
       "epsMultiple": 25,
-      "cachedPrice": 178.51,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 177.46,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "BKNG",
-      "eps": 6.63,
-      "pe": 24.6,
-      "growthRate": 18.2,
+      "eps": 7.58,
+      "pe": 17,
+      "growthRate": 16,
       "desiredReturn": 15,
       "epsMultiple": 27,
-      "cachedPrice": 172.35,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 159.4798,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "COST",
-      "eps": 19.6,
-      "pe": 52.7,
-      "growthRate": 8.8,
+      "eps": 19.21,
+      "pe": 50,
+      "growthRate": 8.7,
       "desiredReturn": 15,
       "epsMultiple": 37,
-      "cachedPrice": 1004.32,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 1049.551,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "DIS",
-      "eps": 6.8,
-      "pe": 14,
-      "growthRate": 5.34,
+      "eps": 6.25,
+      "pe": 17,
+      "growthRate": 7.5,
       "desiredReturn": 15,
-      "epsMultiple": 18,
-      "cachedPrice": 99.02,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 17,
+      "cachedPrice": 103.8401,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "ETSY",
-      "eps": 1.5,
-      "pe": 30.5,
-      "growthRate": 19.9,
+      "eps": 2.61,
+      "pe": 17,
+      "growthRate": 14,
       "desiredReturn": 15,
-      "epsMultiple": 21,
-      "cachedPrice": 53.3,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 25,
+      "cachedPrice": 60.305,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "GOOG",
-      "eps": 10.81,
-      "pe": 27.1,
-      "growthRate": 12.19,
+      "eps": 13.13,
+      "pe": 29,
+      "growthRate": 11,
       "desiredReturn": 15,
-      "epsMultiple": 23,
-      "cachedPrice": 315.23,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 25,
+      "cachedPrice": 384.765,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "JNJ",
-      "eps": 11.05,
-      "pe": 21.8,
-      "growthRate": 6,
+      "eps": 8.63,
+      "pe": 22,
+      "growthRate": 8.5,
       "desiredReturn": 10,
-      "epsMultiple": 23,
-      "cachedPrice": 239.72,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 21,
+      "cachedPrice": 230.97,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "KO",
-      "eps": 3.05,
-      "pe": 25.2,
-      "growthRate": 5.74,
+      "eps": 3.18,
+      "pe": 24.4,
+      "growthRate": 5,
       "desiredReturn": 9,
-      "epsMultiple": 24,
-      "cachedPrice": 77.75,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 26,
+      "cachedPrice": 80.99,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "MA",
-      "eps": 16.54,
-      "pe": 29.4,
-      "growthRate": 13,
+      "eps": 17.29,
+      "pe": 27,
+      "growthRate": 12,
       "desiredReturn": 15,
-      "epsMultiple": 32,
-      "cachedPrice": 496.91,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 35,
+      "cachedPrice": 499.86,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "MSFT",
-      "eps": 15.98,
-      "pe": 23.3,
+      "eps": 16.8,
+      "pe": 23,
       "growthRate": 13,
       "desiredReturn": 15,
-      "epsMultiple": 25,
-      "cachedPrice": 371.25,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 30,
+      "cachedPrice": 418.4974,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "NFLX",
-      "eps": 2.53,
-      "pe": 37.9,
-      "growthRate": 16,
+      "eps": 3.1,
+      "pe": 28,
+      "growthRate": 12.5,
       "desiredReturn": 15,
-      "epsMultiple": 36,
-      "cachedPrice": 101.925,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 40,
+      "cachedPrice": 89.77,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "NVDA",
       "eps": 4.9,
-      "pe": 35.9,
-      "growthRate": 23,
+      "pe": 32,
+      "growthRate": 12,
       "desiredReturn": 15,
-      "epsMultiple": 40,
-      "cachedPrice": 188.06,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 50,
+      "cachedPrice": 219.3359,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "PINS",
-      "eps": 0.61,
-      "pe": 27.9,
-      "growthRate": 19.2,
+      "eps": 1.65,
+      "pe": 10,
+      "growthRate": 22,
       "desiredReturn": 15,
       "epsMultiple": 24,
-      "cachedPrice": 17.505,
-      "cachedPriceDate": "2026-04-10"
+      "cachedPrice": 18.995,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "SHOP",
-      "eps": 0.95,
-      "pe": 125,
-      "growthRate": 25,
+      "eps": 1.02,
+      "pe": 80,
+      "growthRate": 28,
       "desiredReturn": 15,
-      "epsMultiple": 50.6,
-      "cachedPrice": 110.435,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 50,
+      "cachedPrice": 105.15,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "UBER",
-      "eps": 4.73,
-      "pe": 14.6,
-      "growthRate": 8.8,
-      "desiredReturn": 15,
-      "epsMultiple": 22,
-      "cachedPrice": 70.8,
-      "cachedPriceDate": "2026-04-10"
+      "eps": 4.03,
+      "pe": 21,
+      "growthRate": 13,
+      "desiredReturn": 12,
+      "epsMultiple": 15,
+      "cachedPrice": 73.78,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "UNH",
-      "eps": 13.25,
-      "pe": 20.9,
-      "growthRate": 14.72,
+      "eps": 13.28,
+      "pe": 24,
+      "growthRate": 15.5,
       "desiredReturn": 15,
-      "epsMultiple": 20,
-      "cachedPrice": 307.9799,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 22,
+      "cachedPrice": 383.39,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "V",
-      "eps": 10.66,
-      "pe": 27.8,
-      "growthRate": 13,
+      "eps": 11.46,
+      "pe": 25,
+      "growthRate": 12,
       "desiredReturn": 15,
-      "epsMultiple": 25,
-      "cachedPrice": 304.02,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 33,
+      "cachedPrice": 331.6413,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "WM",
-      "eps": 6.71,
-      "pe": 35,
-      "growthRate": 12.5,
-      "desiredReturn": 15,
-      "epsMultiple": 28,
-      "cachedPrice": 229.605,
-      "cachedPriceDate": "2026-04-10"
+      "eps": 6.9,
+      "pe": 28,
+      "growthRate": 12,
+      "desiredReturn": 10,
+      "epsMultiple": 32,
+      "cachedPrice": 217.53,
+      "cachedPriceDate": "2026-05-21"
     },
     {
       "symbol": "WSM",
       "eps": 8.85,
-      "pe": 19.7,
-      "growthRate": 7.2,
+      "pe": 20,
+      "growthRate": 7,
       "desiredReturn": 15,
-      "epsMultiple": 18,
-      "cachedPrice": 188.78,
-      "cachedPriceDate": "2026-04-10"
+      "epsMultiple": 17,
+      "cachedPrice": 191.92,
+      "cachedPriceDate": "2026-05-21"
+    },
+    {
+      "symbol": "INTU",
+      "eps": 16.4,
+      "pe": 14,
+      "growthRate": 14.5,
+      "desiredReturn": 15,
+      "epsMultiple": 35,
+      "cachedPrice": 307.0318,
+      "cachedPriceDate": "2026-05-21"
     }
   ]
 }
